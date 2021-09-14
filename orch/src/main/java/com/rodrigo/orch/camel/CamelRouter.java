@@ -5,10 +5,9 @@ import com.rodrigo.orch.repository.UsuarioRepository;
 import feign.FeignException;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class CamelRouter extends RouteBuilder {
 
     public static final String USUARIO = "direct:usuarios";

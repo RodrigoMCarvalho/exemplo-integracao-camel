@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/autor/autor.iml" filepath="$PROJECT_DIR$/autor/autor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/livro/livro.iml" filepath="$PROJECT_DIR$/livro/livro.iml" />
       <module fileurl="file://$PROJECT_DIR$/imovel/ms-imovel.iml" filepath="$PROJECT_DIR$/imovel/ms-imovel.iml" />
       <module fileurl="file://$PROJECT_DIR$/usuario/ms-usuario.iml" filepath="$PROJECT_DIR$/usuario/ms-usuario.iml" />
       <module fileurl="file://$PROJECT_DIR$/orch/orch.iml" filepath="$PROJECT_DIR$/orch/orch.iml" />
