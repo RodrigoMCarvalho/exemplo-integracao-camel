@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UsuarioService {
+public class AutorService {
 
     @Autowired
     private ProducerTemplate producerTemplate;
 
-    public List listarUsuarios() {
-        return producerTemplate.requestBody(CamelRouter.USUARIO, null, List.class);
+    public List listarAutores() {
+        return producerTemplate.requestBody(CamelRouter.AUTOR, null, List.class);
     }
 }

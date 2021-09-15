@@ -1,4 +1,4 @@
-package com.rodrigo.orch.camel;
+package com.rodrigo.orch.camel.processor;
 
 import com.rodrigo.orch.repository.response.ImovelResponse;
 import com.rodrigo.orch.repository.response.UsuarioResponse;
@@ -23,7 +23,5 @@ public class ImovelProcessor implements Processor {
 
         exchange.setProperty("imovel", body);
         exchange.getIn().setBody(body);
-        System.out.println(exchange.getIn().getBody());
-        System.out.println(exchange.getIn().getBody());
     }
 }

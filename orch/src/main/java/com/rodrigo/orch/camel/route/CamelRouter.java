@@ -1,6 +1,9 @@
-package com.rodrigo.orch.camel;
+package com.rodrigo.orch.camel.route;
 
+import com.rodrigo.orch.camel.processor.*;
+import com.rodrigo.orch.repository.AutorRepository;
 import com.rodrigo.orch.repository.ImovelRepository;
+import com.rodrigo.orch.repository.LivroRepository;
 import com.rodrigo.orch.repository.UsuarioRepository;
 import feign.FeignException;
 import org.apache.camel.builder.RouteBuilder;
@@ -12,6 +15,8 @@ public class CamelRouter extends RouteBuilder {
 
     public static final String USUARIO = "direct:usuarios";
     public static final String IMOVEL = "direct:imoveis";
+    public static final String AUTOR = "direct:autores";
+    public static final String LIVRO = "direct:livros";
     public static final String USUARIOCAIU = "direct:usuarioCaiu";
 
     @Autowired
@@ -20,48 +25,71 @@ public class CamelRouter extends RouteBuilder {
     @Autowired
     ImovelRepository imovelRepository;
 
+    @Autowired
+    AutorRepository autorRepository;
+
+    @Autowired
+    LivroRepository livroRepository;
+
     @Override
     public void configure() throws Exception {
         this.configExceptions();
         this.acessarEndpointComOpenFeignClient();
         this.imovel();
+        this.autor();
+        this.livros();
         this.usuarioCaiu();
     }
 
     private void configExceptions() {
         onException(FeignException.class)
                 .maximumRedeliveries(2)
-                .to(CamelRouter.USUARIOCAIU)
+            .to(USUARIOCAIU)
                 .process(new ThrowExceptionProcessor())
                 .end();
     }
 
     private void usuarioCaiu(){
-        from(CamelRouter.USUARIOCAIU)
+        from(USUARIOCAIU)
                 .log("----> ${body}")
                 .process(new ThrowExceptionProcessor())
                 .log("error ->${body}")
-                .end();
+            .end();
     }
 
     private void acessarEndpointComOpenFeignClient() {
-        from(CamelRouter.USUARIO)
+        from(USUARIO)
                 .bean(usuarioRepository, "retornaUsuarios()")
                 .log("----> ${body}")
                 .process(new UsuarioProcessor())
                 .log("->${body}")
-                .to(CamelRouter.IMOVEL)
+            .to(IMOVEL)
                 .process(new ImovelProcessor())
                 .log("->imovel")
-                .end();
+            .end();
     }
 
     private void imovel(){
-        from(CamelRouter.IMOVEL)
+        from(IMOVEL)
                 .bean(imovelRepository, "retornaImovel()")
                 .log("----> Imovel ${body}")
                 .log("->${body}")
-                .end();
+            .end();
+    }
+
+    private void autor(){
+        from(AUTOR)
+                .bean(autorRepository, "retornaAutores()")
+                .process(new AutorProcessor())
+            .to(LIVRO)
+                .process(new LivroProcessor())
+            .end();
+    }
+
+    private void livros(){
+        from(LIVRO)
+                .bean(livroRepository, "retornaLivros()")
+            .end();
     }
 
 }

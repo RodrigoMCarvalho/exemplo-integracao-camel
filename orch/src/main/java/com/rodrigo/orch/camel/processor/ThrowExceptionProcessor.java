@@ -1,4 +1,4 @@
-package com.rodrigo.orch.camel;
+package com.rodrigo.orch.camel.processor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Exchange;

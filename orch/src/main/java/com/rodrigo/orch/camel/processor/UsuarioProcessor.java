@@ -1,4 +1,4 @@
-package com.rodrigo.orch.camel;
+package com.rodrigo.orch.camel.processor;
 
 import com.rodrigo.orch.repository.response.UsuarioResponse;
 import org.apache.camel.Exchange;
