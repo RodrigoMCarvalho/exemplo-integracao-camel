@@ -14,9 +14,9 @@ public class EditoraProcessor implements Processor {
         List<EditoraResponse> editoras = exchange.getIn().getBody(List.class);
 
         body.forEach(livro -> {
-                        editoras.stream()
-                                .filter(editora -> livro.getEditoraId().equals(editora.getId()))
-                                .forEach(editora -> livro.setEditora(editora.getNome()));
+                editoras.stream()
+                        .filter(editora -> livro.getEditoraId().equals(editora.getId()))
+                        .forEach(editora -> livro.setEditora(editora.getNome()));
         });
 
         exchange.setProperty("editora", editoras);
