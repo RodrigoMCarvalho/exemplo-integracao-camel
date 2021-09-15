@@ -17,7 +17,9 @@ public class AutorInit implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         Autor autor1 = Autor.builder().nome("Neil Gaiman").email("email1@gmail.com").build();
         Autor autor2 = Autor.builder().nome("Frank Miller").email("email2@gmail.com").build();
+        Autor autor3 = Autor.builder().nome("Alan Moore").email("email3@gmail.com").build();
         autorRepository.save(autor1);
         autorRepository.save(autor2);
+        autorRepository.save(autor3);
     }
 }

@@ -10,12 +10,14 @@
         <module name="ms-imovel" />
         <module name="ms-usuario" />
         <module name="orch" />
+        <module name="editora" />
         <module name="livro" />
         <module name="autor" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="autor" target="11" />
+      <module name="editora" target="11" />
       <module name="livro" target="11" />
       <module name="ms-imovel" target="11" />
       <module name="ms-usuario" target="11" />
@@ -25,6 +27,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="autor" options="-parameters" />
+      <module name="editora" options="-parameters" />
       <module name="livro" options="-parameters" />
       <module name="ms-imovel" options="-parameters" />
       <module name="ms-usuario" options="-parameters" />

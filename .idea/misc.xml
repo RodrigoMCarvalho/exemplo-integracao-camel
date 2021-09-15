@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/imovel/pom.xml" />
         <option value="$PROJECT_DIR$/autor/pom.xml" />
         <option value="$PROJECT_DIR$/livro/pom.xml" />
+        <option value="$PROJECT_DIR$/editora/pom.xml" />
       </list>
     </option>
   </component>

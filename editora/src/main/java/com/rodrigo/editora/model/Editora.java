@@ -1,4 +1,4 @@
-package com.rodrigo.livro.model;
+package com.rodrigo.editora.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +15,10 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Livro {
+public class Editora {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
     private Long id;
-    private String titulo;
-    private Long autorId;
-    private Long editoraId;
-
+    private String nome;
 }

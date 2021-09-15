@@ -18,7 +18,7 @@ public class LivroProcessor implements Processor {
                         .filter(livroResponse -> livroResponse.getAutorId().equals(autorResponse.getId()))
                         .collect(Collectors.toList())));
 
-        exchange.setProperty("livro", body);
+        exchange.setProperty("livro", livros);
         exchange.getIn().setBody(body);
     }
 }

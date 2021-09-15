@@ -21,7 +21,7 @@ public class ImovelProcessor implements Processor {
                     .collect(Collectors.toList()));
         });
 
-        exchange.setProperty("imovel", body);
+        exchange.setProperty("imovel", imoveis);
         exchange.getIn().setBody(body);
     }
 }

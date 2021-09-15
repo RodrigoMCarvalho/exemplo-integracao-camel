@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/autor/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/autor/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/editora/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/editora/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/imovel/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/imovel/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/livro/src/main/java" charset="UTF-8" />

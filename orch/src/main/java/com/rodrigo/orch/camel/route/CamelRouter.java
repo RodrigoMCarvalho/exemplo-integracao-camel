@@ -1,10 +1,7 @@
 package com.rodrigo.orch.camel.route;
 
 import com.rodrigo.orch.camel.processor.*;
-import com.rodrigo.orch.repository.AutorRepository;
-import com.rodrigo.orch.repository.ImovelRepository;
-import com.rodrigo.orch.repository.LivroRepository;
-import com.rodrigo.orch.repository.UsuarioRepository;
+import com.rodrigo.orch.repository.*;
 import feign.FeignException;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +14,7 @@ public class CamelRouter extends RouteBuilder {
     public static final String IMOVEL = "direct:imoveis";
     public static final String AUTOR = "direct:autores";
     public static final String LIVRO = "direct:livros";
+    public static final String EDITORA = "direct:editoras";
     public static final String USUARIOCAIU = "direct:usuarioCaiu";
 
     @Autowired
@@ -31,6 +29,9 @@ public class CamelRouter extends RouteBuilder {
     @Autowired
     LivroRepository livroRepository;
 
+    @Autowired
+    EditoraRepository editoraRepository;
+
     @Override
     public void configure() throws Exception {
         this.configExceptions();
@@ -38,6 +39,7 @@ public class CamelRouter extends RouteBuilder {
         this.imovel();
         this.autor();
         this.livros();
+        this.editoras();
         this.usuarioCaiu();
     }
 
@@ -83,6 +85,8 @@ public class CamelRouter extends RouteBuilder {
                 .process(new AutorProcessor())
             .to(LIVRO)
                 .process(new LivroProcessor())
+            .to(EDITORA)
+                .process(new EditoraProcessor())
             .end();
     }
 
@@ -90,6 +94,12 @@ public class CamelRouter extends RouteBuilder {
         from(LIVRO)
                 .bean(livroRepository, "retornaLivros()")
             .end();
+    }
+
+    private void editoras(){
+        from(EDITORA)
+                .bean(editoraRepository, "retornaEditoras()")
+                .end();
     }
 
 }

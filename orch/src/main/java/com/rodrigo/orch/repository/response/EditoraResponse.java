@@ -9,11 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LivroResponse {
+public class EditoraResponse {
 
     private Long id;
-    private String titulo;
-    private Long autorId;
-    private Long editoraId;
-    private String editora;
+    private String nome;
 }
