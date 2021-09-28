@@ -14,6 +14,7 @@ public class CamelRouter extends RouteBuilder {
     public static final String IMOVEL = "direct:imoveis";
     public static final String AUTOR = "direct:autores";
     public static final String LIVRO = "direct:livros";
+    public static final String SAVE_LIVRO = "direct:save_livro";
     public static final String EDITORA = "direct:editoras";
     public static final String USUARIOCAIU = "direct:usuarioCaiu";
 
@@ -91,8 +92,14 @@ public class CamelRouter extends RouteBuilder {
     }
 
     private void livros(){
-        from(LIVRO)
+        from(SAVE_LIVRO)
                 .bean(livroRepository, "retornaLivros()")
+            .end();
+    }
+
+    private void saveLivro(){
+        from(LIVRO)
+                .bean(livroRepository, "saveLivros()")
             .end();
     }
 

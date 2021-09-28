@@ -5,10 +5,10 @@ import com.rodrigo.livro.service.LivroService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -20,8 +20,23 @@ public class LivroController {
     private LivroService livroService;
 
     @GetMapping
-    public ResponseEntity<List<Livro>> getAutores() {
-        log.info("ENDPOINT-LIVROS");
-        return ResponseEntity.ok(livroService.getAutor());
+    public ResponseEntity<List<Livro>> getLivros() {
+        return ResponseEntity.ok(livroService.getLivros());
+    }
+
+    @GetMapping("/id")
+    public ResponseEntity<Livro> getLivroById(@PathVariable Long id) {
+        return livroService.getLivroById(id)
+                .map(livro -> ResponseEntity.ok(livro))
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity saveLivro(@RequestBody Livro livro) {
+        Livro livroSalvo = livroService.saveLivro(livro);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
+                .buildAndExpand(livroSalvo.getId())
+                .toUri();
+        return ResponseEntity.created(uri).body(livroSalvo);
     }
 }
