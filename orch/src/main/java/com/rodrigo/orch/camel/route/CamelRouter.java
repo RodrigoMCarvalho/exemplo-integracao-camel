@@ -2,9 +2,12 @@ package com.rodrigo.orch.camel.route;
 
 import com.rodrigo.orch.camel.processor.*;
 import com.rodrigo.orch.repository.*;
+import com.rodrigo.orch.repository.request.LivroRequest;
 import feign.FeignException;
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,6 +20,7 @@ public class CamelRouter extends RouteBuilder {
     public static final String SAVE_LIVRO = "direct:save_livro";
     public static final String EDITORA = "direct:editoras";
     public static final String USUARIOCAIU = "direct:usuarioCaiu";
+    public static final String ORCH = "direct:start";
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -42,6 +46,7 @@ public class CamelRouter extends RouteBuilder {
         this.livros();
         this.editoras();
         this.usuarioCaiu();
+        this.saveLivro();
     }
 
     private void configExceptions() {
@@ -92,15 +97,16 @@ public class CamelRouter extends RouteBuilder {
     }
 
     private void livros(){
-        from(SAVE_LIVRO)
+        from(LIVRO)
                 .bean(livroRepository, "retornaLivros()")
             .end();
     }
 
-    private void saveLivro(){
-        from(LIVRO)
-                .bean(livroRepository, "saveLivros()")
-            .end();
+    private void saveLivro() {
+        from(SAVE_LIVRO)
+                .bean(livroRepository)
+                .end();
+
     }
 
     private void editoras(){

@@ -17,5 +17,5 @@ public interface LivroRepository {
     List<LivroResponse> retornaLivros();
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
-    ResponseEntity saveLivro(@RequestBody LivroRequest livro);
+    LivroResponse saveLivro(@RequestBody LivroRequest livro);
 }
