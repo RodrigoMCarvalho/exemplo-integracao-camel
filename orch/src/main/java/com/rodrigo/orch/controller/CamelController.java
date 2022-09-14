@@ -39,6 +39,11 @@ public class CamelController {
         return livroService.getLivros();
     }
 
+    @PatchMapping("/livros/atualizar")
+    public void atualizarLivros(){
+        livroService.atualizarLivro();
+    }
+
     @PostMapping("/addLivro")
     public LivroResponse addLivro(@RequestBody LivroRequest livroRequest) {
         return livroService.addLivro(livroRequest);

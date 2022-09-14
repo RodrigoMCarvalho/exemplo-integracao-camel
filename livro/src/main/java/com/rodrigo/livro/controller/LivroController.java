@@ -39,4 +39,10 @@ public class LivroController {
                 .toUri();
         return ResponseEntity.created(uri).body(livroSalvo);
     }
+
+    @PatchMapping("/atualizar/{id}/autor/{nome}")
+    public ResponseEntity atualizarLivro(@PathVariable Long id, @PathVariable String nome) {
+        log.info("id= {}, autor= {}", id, nome);
+        return ResponseEntity.ok().build();
+    }
 }

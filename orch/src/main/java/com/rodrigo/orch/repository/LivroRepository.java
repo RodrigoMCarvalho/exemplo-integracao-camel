@@ -3,7 +3,6 @@ package com.rodrigo.orch.repository;
 import com.rodrigo.orch.repository.request.LivroRequest;
 import com.rodrigo.orch.repository.response.LivroResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
